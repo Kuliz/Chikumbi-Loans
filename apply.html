@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Loan Application | Chikumbi Loans</title>
+    
+    <link rel="icon" type="image/png" href="Chikumbi loans.png">
+
+    <style>
+        /* --- Design Tokens & Variables --- */
+        :root {
+            --primary-soft: #F4FBF7;      
+            --primary-accent: #2E7D32;    
+            --earth-brown: #5D4037;       
+            --dark-slate: #212121;        
+            --pure-white: #FFFFFF;
+            --shadow-light: 0 10px 25px rgba(46, 125, 50, 0.08);
+            --transition-smooth: all 0.3s ease;
+        }
+
+        /* --- Base Reset & Typography --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--primary-soft);
+            color: var(--dark-slate);
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* --- Header / Navigation --- */
+        header {
+            background: var(--pure-white);
+            padding: 1.2rem 8%; 
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.02);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-logo-container {
+            display: flex;
+            align-items: center;
+            gap: 20px; 
+            text-decoration: none;
+        }
+
+        .header-logo-img {
+            height: 110px; 
+            width: auto;
+            object-fit: contain;
+            transition: var(--transition-smooth);
+        }
+
+        .header-logo-text {
+            font-size: 2.2rem;
+            font-weight: 800; 
+            color: var(--earth-brown);
+            letter-spacing: -0.5px;
+        }
+
+        .header-logo-text span {
+            color: var(--primary-accent);
+        }
+
+        .cta-btn {
+            background: var(--primary-accent);
+            color: var(--pure-white);
+            padding: 0.9rem 2.2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(46, 125, 50, 0.2);
+            transition: var(--transition-smooth);
+            text-decoration: none;
+            display: inline-block;
+            white-space: nowrap;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(46, 125, 50, 0.35);
+            background-color: #27662A;
+        }
+
+        /* --- Form Container & Page Layout --- */
+        .inner-page {
+            padding: 4rem 8%;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            text-align: center;
+            margin-bottom: 0.5rem;
+            color: var(--earth-brown);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #666666;
+            margin-bottom: 3rem;
+            font-size: 1rem;
+            padding: 0 1rem;
+        }
+
+        .form-container {
+            max-width: 700px;
+            margin: 0 auto;
+            background: var(--pure-white);
+            padding: 3rem;
+            border-radius: 24px;
+            box-shadow: var(--shadow-light);
+            border: 1px solid rgba(46, 125, 50, 0.05);
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .full-width {
+            grid-column: span 2;
+        }
+
+        .form-section-divider {
+            grid-column: span 2;
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+            padding-bottom: 0.3rem;
+            border-bottom: 2px solid var(--primary-soft);
+            color: var(--primary-accent);
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .input-group label {
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #444444;
+        }
+
+        .input-group input, .input-group select, .input-group textarea {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid rgba(93, 64, 55, 0.2);
+            border-radius: 8px;
+            outline: none;
+            font-size: 1rem;
+            color: var(--dark-slate);
+            background: #FAFAFA;
+            transition: var(--transition-smooth);
+        }
+
+        .input-group input:focus, .input-group select:focus, .input-group textarea:focus {
+            border-color: var(--primary-accent);
+            background: var(--pure-white);
+            box-shadow: 0 0 8px rgba(46, 125, 50, 0.15);
+        }
+
+        /* --- Footer --- */
+        footer {
+            background: var(--earth-brown);
+            color: #EFEBE9;
+            padding: 2rem 8%;
+            text-align: center;
+            font-size: 0.95rem;
+            margin-top: auto;
+        }
+
+        /* --- Responsive Viewports --- */
+        @media (max-width: 1024px) {
+            .header-logo-img {
+                height: 85px; 
+            }
+            .header-logo-text {
+                font-size: 1.8rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 1.5rem 5%;
+                flex-direction: column;
+                gap: 1.2rem;
+                text-align: center;
+            }
+            .header-logo-container {
+                flex-direction: column;
+                gap: 8px;
+            }
+            .header-logo-img {
+                height: 95px; 
+            }
+            .header-logo-text {
+                font-size: 1.8rem; 
+            }
+            .cta-btn {
+                display: none; /* Hidden on form page mobile header since they are already here */
+            }
+            .form-grid {
+                grid-template-columns: 1fr;
+                gap: 1.2rem;
+            }
+            .full-width, .form-section-divider {
+                grid-column: span 1;
+            }
+            .inner-page {
+                padding: 2.5rem 4%;
+            }
+            .form-container {
+                padding: 1.8rem 1.2rem;
+                border-radius: 16px;
+            }
+            .section-title {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="index.html" class="header-logo-container">
+            <img class="header-logo-img" src="Chikumbi loans.png" alt="Chikumbi Loans Accessible Brand Logo">
+            <div class="header-logo-text">Chikumbi <span>Loans</span></div>
+        </a>
+    </header>
+
+    <main>
+        <div class="inner-page">
+            <h2 class="section-title">Secure Loan Application</h2>
+            <p class="section-subtitle">Please supply accurate details below to safely initiate verification under underwriting standards.</p>
+            
+            <div class="form-container">
+                <form id="whatsappLoanForm" onsubmit="sendToWhatsApp(event)">
+                    
+                    <div class="form-grid">
+                        <div class="form-section-divider">Loan Requirements</div>
+                        
+                        <div class="input-group">
+                            <label for="loanAmount">Desired Loan Capital</label>
+                            <input type="text" id="loanAmount" placeholder="e.g., K5,000" required>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="repaymentPeriod">Repayment Period & Rate Track</label>
+                            <select id="repaymentPeriod" required>
+                                <option value="" disabled selected>Select duration</option>
+                                <option value="1 Week (25% Interest)">1 Week (25% Interest)</option>
+                                <option value="2 Weeks (30% Interest)">2 Weeks (30% Interest)</option>
+                                <option value="3 Weeks (40% Interest)">3 Weeks (40% Interest)</option>
+                                <option value="4 Weeks (50% Interest)">4 Weeks (50% Interest)</option>
+                            </select>
+                        </div>
+
+                        <div class="input-group full-width">
+                            <label for="collateralItem">Proposed Collateral Item Description</label>
+                            <textarea id="collateralItem" rows="2" placeholder="Provide clear details of the item being offered as collateral (e.g., Make, Model, Condition)" required></textarea>
+                        </div>
+
+                        <div class="form-section-divider">Applicant Personal Verification</div>
+
+                        <div class="input-group">
+                            <label for="fullName">Full Legal Name</label>
+                            <input type="text" id="fullName" placeholder="First Name & Surname" required>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="nrcNumber">NRC Number (e.g., 123456/11/1)</label>
+                            <input type="text" id="nrcNumber" placeholder="xxxxxx/xx/x" required>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="phoneNumber">Primary Mobile Number</label>
+                            <input type="tel" id="phoneNumber" placeholder="e.g., 097xxxxxxx" required>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="emailAddress">Email Address</label>
+                            <input type="email" id="emailAddress" placeholder="name@example.com" required>
+                        </div>
+
+                        <div class="input-group full-width">
+                            <label for="homeAddress">Physical Residential Address (Town, Area, Street, House #)</label>
+                            <textarea id="homeAddress" rows="2" placeholder="e.g. Lusaka, Chelstone, Palm Drive, House 12" required></textarea>
+                        </div>
+
+                        <div class="form-section-divider">Employment or Business Details</div>
+
+                        <div class="input-group">
+                            <label for="sourceOfIncome">Primary Source of Income</label>
+                            <select id="sourceOfIncome" required>
+                                <option value="" disabled selected>Select option</option>
+                                <option value="Formally Employed">Formally Employed (Salary)</option>
+                                <option value="Business Owner / Trader">Business Owner / Trader</option>
+                                <option value="Contractor / Freelancer">Contractor / Freelancer</option>
+                            </select>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="workplace">Employer Name / Nature of Business</label>
+                            <input type="text" id="workplace" placeholder="Company Name or Shop Type" required>
+                        </div>
+
+                        <div class="form-section-divider">Zambian Traceability & Guarantor Reference</div>
+
+                        <div class="input-group">
+                            <label for="kinName">Next of Kin Full Name</label>
+                            <input type="text" id="kinName" placeholder="Relative's Name" required>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="kinRelation">Relationship to Applicant</label>
+                            <input type="text" id="kinRelation" placeholder="e.g. Spouse, Parent, Sibling" required>
+                        </div>
+
+                        <div class="input-group full-width">
+                            <label for="kinPhone">Next of Kin Phone Number & Physical Address</label>
+                            <textarea id="kinPhone" rows="2" placeholder="Contact number and where they stay" required></textarea>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="cta-btn" style="width: 100%; margin-top: 2rem; border-radius: 8px;">
+                        Submit Application via WhatsApp
+                    </button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Chikumbi Loans. All rights reserved. Terms and Conditions Apply.</p>
+    </footer>
+
+    <script>
+        const WHATSAPP_RECEIVER_NUMBER = "260773966089"; 
+
+        function sendToWhatsApp(event) {
+            event.preventDefault();
+
+            const loanAmt = document.getElementById('loanAmount').value;
+            const period = document.getElementById('repaymentPeriod').value;
+            const collateral = document.getElementById('collateralItem').value;
+            const name = document.getElementById('fullName').value;
+            const nrc = document.getElementById('nrcNumber').value;
+            const phone = document.getElementById('phoneNumber').value;
+            const email = document.getElementById('emailAddress').value;
+            const address = document.getElementById('homeAddress').value;
+            const incomeSource = document.getElementById('sourceOfIncome').value;
+            const work = document.getElementById('workplace').value;
+            const kin = document.getElementById('kinName').value;
+            const relation = document.getElementById('kinRelation').value;
+            const kinContact = document.getElementById('kinPhone').value;
+
+            const textMessage = 
+                `*CHIKUMBI LOANS APPLICATION*\n` +
+                `------------------------------------\n` +
+                `• *LOAN REQUESTED:* ${loanAmt}\n` +
+                `• *REPAYMENT TERM:* ${period}\n` +
+                `• *COLLATERAL:* ${collateral}\n\n` +
+                `*APPLICANT DETAILS:*\n` +
+                `• *Name:* ${name}\n` +
+                `• *NRC Number:* ${nrc}\n` +
+                `• *Phone:* ${phone}\n` +
+                `• *Email:* ${email}\n` +
+                `• *Residential Address:* ${address}\n\n` +
+                `*ECONOMIC BACKGROUND:*\n` +
+                `• *Income Source:* ${incomeSource}\n` +
+                `• *Employer/Business:* ${work}\n\n` +
+                `*TRACEABILITY / REFERENCE:*\n` +
+                `• *Next of Kin:* ${kin} (${relation})\n` +
+                `• *Kin Contact & Address:* ${kinContact}\n` +
+                `------------------------------------\n` +
+                `_Sent via Chikumbi Online Portal Intake_`;
+
+            const encodedMessage = encodeURIComponent(textMessage);
+            const whatsAppUrl = `https://wa.me/${WHATSAPP_RECEIVER_NUMBER}?text=${encodedMessage}`;
+            window.open(whatsAppUrl, '_blank');
+        }
+    </script>
+</body>
+</html>
