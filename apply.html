@@ -36,35 +36,36 @@
             min-height: 100vh;
         }
 
-        /* --- Header / Navigation --- */
+        /* --- Header / Navigation Bar --- */
         header {
             background: var(--pure-white);
-            padding: 1.2rem 8%; 
+            padding: 0.8rem 8%; 
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 2px 15px rgba(0,0,0,0.02);
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
             position: sticky;
             top: 0;
-            z-index: 100;
+            z-index: 1000;
+            width: 100%;
         }
 
         .header-logo-container {
             display: flex;
             align-items: center;
-            gap: 20px; 
+            gap: 12px; 
             text-decoration: none;
         }
 
         .header-logo-img {
-            height: 110px; 
+            height: 60px; 
             width: auto;
             object-fit: contain;
             transition: var(--transition-smooth);
         }
 
         .header-logo-text {
-            font-size: 2.2rem;
+            font-size: 1.6rem;
             font-weight: 800; 
             color: var(--earth-brown);
             letter-spacing: -0.5px;
@@ -74,26 +75,16 @@
             color: var(--primary-accent);
         }
 
-        .cta-btn {
-            background: var(--primary-accent);
-            color: var(--pure-white);
-            padding: 0.9rem 2.2rem;
-            border: none;
-            border-radius: 50px;
-            font-size: 1.1rem;
-            font-weight: 700;
-            cursor: pointer;
-            box-shadow: 0 4px 12px rgba(46, 125, 50, 0.2);
-            transition: var(--transition-smooth);
+        .back-home-link {
+            color: var(--primary-accent);
             text-decoration: none;
-            display: inline-block;
-            white-space: nowrap;
+            font-weight: 700;
+            font-size: 1rem;
+            transition: var(--transition-smooth);
         }
 
-        .cta-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 18px rgba(46, 125, 50, 0.35);
-            background-color: #27662A;
+        .back-home-link:hover {
+            color: var(--earth-brown);
         }
 
         /* --- Form Container & Page Layout --- */
@@ -177,6 +168,29 @@
             box-shadow: 0 0 8px rgba(46, 125, 50, 0.15);
         }
 
+        .submit-btn {
+            background: var(--primary-accent);
+            color: var(--pure-white);
+            padding: 0.9rem 2.2rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(46, 125, 50, 0.2);
+            transition: var(--transition-smooth);
+            text-decoration: none;
+            display: inline-block;
+            width: 100%;
+            margin-top: 2rem;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(46, 125, 50, 0.35);
+            background-color: #27662A;
+        }
+
         /* --- Footer --- */
         footer {
             background: var(--earth-brown);
@@ -187,35 +201,21 @@
             margin-top: auto;
         }
 
-        /* --- Responsive Viewports --- */
-        @media (max-width: 1024px) {
-            .header-logo-img {
-                height: 85px; 
-            }
-            .header-logo-text {
-                font-size: 1.8rem;
-            }
-        }
-
+        /* --- Standard Mobile Responsive Rules --- */
         @media (max-width: 768px) {
             header {
-                padding: 1.5rem 5%;
-                flex-direction: column;
-                gap: 1.2rem;
-                text-align: center;
-            }
-            .header-logo-container {
-                flex-direction: column;
-                gap: 8px;
+                padding: 0.6rem 4%;
+                flex-direction: row;
+                justify-content: space-between;
             }
             .header-logo-img {
-                height: 95px; 
+                height: 45px;
             }
             .header-logo-text {
-                font-size: 1.8rem; 
+                font-size: 1.1rem;
             }
-            .cta-btn {
-                display: none; /* Hidden on form page mobile header since they are already here */
+            .back-home-link {
+                font-size: 0.9rem;
             }
             .form-grid {
                 grid-template-columns: 1fr;
@@ -244,6 +244,7 @@
             <img class="header-logo-img" src="Chikumbi loans.png" alt="Chikumbi Loans Accessible Brand Logo">
             <div class="header-logo-text">Chikumbi <span>Loans</span></div>
         </a>
+        <a href="index.html" class="back-home-link">← Home</a>
     </header>
 
     <main>
@@ -340,7 +341,7 @@
                         </div>
                     </div>
 
-                    <button type="submit" class="cta-btn" style="width: 100%; margin-top: 2rem; border-radius: 8px;">
+                    <button type="submit" class="submit-btn">
                         Submit Application via WhatsApp
                     </button>
                 </form>
